@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community — FutureEra</title>
+  <meta name="description" content="Where the FutureEra community collaborates — build logs, career advice, suggested peers, and groups." />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/era-transition.css?v=1" />
+</head>
+<body>
+
+  <!-- Floating Navigation -->
+  <header class="app-header">
+    <a href="/" class="brand-wrap" title="FutureEra Homepage">
+      <div class="brand-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="boltGradCommunity" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#ccfbf1" />
+            </linearGradient>
+          </defs>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="url(#boltGradCommunity)" stroke="#ffffff" stroke-width="1.2" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.18));"></polygon>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">Future<span class="brand-title-highlight">Era</span></span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="/" class="header-link">Home</a>
+      <a href="/#about" class="header-link">About</a>
+      <a href="/creators" class="header-link">Creators</a>
+      <a href="/community" class="header-link" style="color: var(--primary-teal); font-weight: 700;">Community</a>
+      <a href="/stage" class="btn btn--solid" style="padding: 10px 20px; font-size: 13px;">Enter the Era &rarr;</a>
+
+      <!-- Auth trigger button -->
+      <button class="auth__trigger auth__nav-trigger" type="button" data-auth-open>
+        Log in
+      </button>
+
+      <!-- Signed-in state chip -->
+      <span class="auth__who" data-auth-who>
+        <button class="prof__chip" type="button" data-profile-open aria-haspopup="dialog">
+          <span class="auth__avatar" data-auth-initial aria-hidden="true">FE</span>
+          <span class="prof__chipname" data-profile-chipname>Profile</span>
+        </button>
+        <button class="auth__trigger" type="button" data-auth-signout>Sign out</button>
+      </span>
+    </div>
+  </header>
+
+  <!-- Community Main Section -->
+  <main>
+    <section class="community community--page" id="community">
+      <div class="community__inner">
+
+        <span class="community__eyebrow" data-reveal>COMMUNITY &amp; COLLABORATION</span>
+
+        <h1 class="community__title" data-reveal>
+          Where the era <em>talks back</em>.
+        </h1>
+
+        <p class="community__lede" data-reveal>
+          The work is better when someone has already hit the wall you are about to hit.
+          Four rooms, no noise — bring the thing you are building, or the thing that broke.
+        </p>
+
+        <!-- 4 Channels Grid -->
+        <div class="community__channels">
+          <article class="channel" data-reveal>
+            <div class="channel__icon-badge">🔨</div>
+            <h2 class="channel__name">Build Logs</h2>
+            <p class="channel__desc">
+              What you shipped this week, however small. Screenshots, early drafts, and
+              the bug that took three days all count.
+            </p>
+            <span class="channel__count">214 threads</span>
+          </article>
+
+          <article class="channel" data-reveal>
+            <div class="channel__icon-badge">🧭</div>
+            <h2 class="channel__name">Career Corner</h2>
+            <p class="channel__desc">
+              Which path to take, which skill to learn next, what to do when the plan changes.
+              Bring the real situation, not the hypothetical one.
+            </p>
+            <span class="channel__count">389 threads</span>
+          </article>
+
+          <article class="channel" data-reveal>
+            <div class="channel__icon-badge">✨</div>
+            <h2 class="channel__name">Show &amp; Tell</h2>
+            <p class="channel__desc">
+              Finished systems, demos, experiments, and the one production feature you are
+              quietly proud of.
+            </p>
+            <span class="channel__count">156 threads</span>
+          </article>
+
+          <article class="channel" data-reveal>
+            <div class="channel__icon-badge">💡</div>
+            <h2 class="channel__name">Questions</h2>
+            <p class="channel__desc">
+              The ones that look too obvious to ask and turn out everyone else had too.
+              Zero judgment, maximum depth.
+            </p>
+            <span class="channel__count">502 threads</span>
+          </article>
+        </div>
+
+        <!-- ============ PEOPLE YOU MIGHT FOLLOW ============ -->
+        <section class="people" id="people" aria-labelledby="people-title">
+          <div class="people__head">
+            <div class="people__headtext">
+              <span class="people__eyebrow" data-reveal>PEER RECOMMENDATIONS</span>
+              <h2 class="people__title" id="people-title" data-reveal>People worth following</h2>
+              <p class="people__lede" data-reveal>
+                Ranked by how much of what you picked they also have. Select your interests and skills
+                below to re-rank in real time.
+              </p>
+            </div>
+
+            <div class="people__arrows">
+              <button class="people__arrow" type="button" data-people-prev aria-label="Show earlier suggestions">
+                <span aria-hidden="true">&larr;</span>
+              </button>
+              <button class="people__arrow" type="button" data-people-next aria-label="Show more suggestions">
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tag Pickers (Dropdown Boxes with Smooth Animation) -->
+          <div class="people__picker" data-reveal>
+            <div class="filter-dropdowns-grid">
+              <!-- Dropdown 1: Your Interests -->
+              <div class="filter-dropdown" id="dropdown-interests" data-dropdown="interests">
+                <button class="filter-dropdown__trigger" type="button" aria-expanded="false" aria-controls="dropdown-panel-interests" id="trigger-interests" data-dropdown-trigger="interests">
+                  <div class="filter-dropdown__lead">
+                    <span class="filter-dropdown__icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                      </svg>
+                    </span>
+                    <div class="filter-dropdown__text">
+                      <span class="filter-dropdown__title">Your Interests</span>
+                      <span class="filter-dropdown__subtitle" data-dropdown-subtitle="interests">Select domains you care about</span>
+                    </div>
+                  </div>
+                  <div class="filter-dropdown__meta">
+                    <span class="filter-dropdown__badge" data-dropdown-count="interests" style="display: none;">0</span>
+                    <span class="filter-dropdown__chevron" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </span>
+                  </div>
+                </button>
+
+                <!-- Selected Pills Preview (Visible when collapsed or having active tags) -->
+                <div class="filter-dropdown__preview" data-dropdown-preview="interests" style="display: none;"></div>
+
+                <!-- Collapsible / Expandable Panel with CSS Grid Animation -->
+                <div class="filter-dropdown__collapse" id="dropdown-panel-interests" role="region" aria-labelledby="trigger-interests">
+                  <div class="filter-dropdown__content">
+                    <div class="filter-dropdown__topbar">
+                      <span class="filter-dropdown__hint">Click tags below to re-rank peer recommendations</span>
+                      <button class="filter-dropdown__clear" type="button" data-clear-tags="interests" style="display: none;">Clear all</button>
+                    </div>
+                    <div class="people__chips" id="people-interests" role="group" aria-labelledby="trigger-interests"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dropdown 2: Your Skills -->
+              <div class="filter-dropdown" id="dropdown-skills" data-dropdown="skills">
+                <button class="filter-dropdown__trigger" type="button" aria-expanded="false" aria-controls="dropdown-panel-skills" id="trigger-skills" data-dropdown-trigger="skills">
+                  <div class="filter-dropdown__lead">
+                    <span class="filter-dropdown__icon filter-dropdown__icon--skills" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                      </svg>
+                    </span>
+                    <div class="filter-dropdown__text">
+                      <span class="filter-dropdown__title">Your Skills</span>
+                      <span class="filter-dropdown__subtitle" data-dropdown-subtitle="skills">Filter by your strengths</span>
+                    </div>
+                  </div>
+                  <div class="filter-dropdown__meta">
+                    <span class="filter-dropdown__badge" data-dropdown-count="skills" style="display: none;">0</span>
+                    <span class="filter-dropdown__chevron" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </span>
+                  </div>
+                </button>
+
+                <!-- Selected Pills Preview (Visible when collapsed or having active tags) -->
+                <div class="filter-dropdown__preview" data-dropdown-preview="skills" style="display: none;"></div>
+
+                <!-- Collapsible / Expandable Panel with CSS Grid Animation -->
+                <div class="filter-dropdown__collapse" id="dropdown-panel-skills" role="region" aria-labelledby="trigger-skills">
+                  <div class="filter-dropdown__content">
+                    <div class="filter-dropdown__search-wrap">
+                      <svg class="filter-dropdown__search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                      <input class="filter-dropdown__search inp" id="people-skill-filter" type="search" placeholder="Search skills (e.g. python, react, sql)..." autocomplete="off" />
+                      <button class="filter-dropdown__clear" type="button" data-clear-tags="skills" style="display: none;">Clear all</button>
+                    </div>
+                    <div class="people__chips" id="people-skills" role="group" aria-labelledby="trigger-skills"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter Status Bar & Reset Button -->
+            <div class="filter-dropdown__statusbar">
+              <div class="filter-dropdown__status-text" id="people-status" role="status" aria-live="polite">
+                Loading members&hellip;
+              </div>
+              <button class="filter-dropdown__reset-btn" type="button" id="people-reset-all" style="display: none;">
+                ✕ Reset All Filters
+              </button>
+            </div>
+          </div>
+
+          <!-- Member Cards Container -->
+          <div class="people__slide" id="people-slide" role="list" aria-label="Suggested members" data-reveal>
+            <p class="people__loading">Loading members&hellip;</p>
+          </div>
+        </section>
+
+        <!-- ============ GROUPS YOU MIGHT LIKE ============ -->
+        <section class="groups" id="groups" aria-labelledby="groups-title" data-reveal>
+          <div class="groups__head">
+            <span class="people__eyebrow">COMMUNITIES</span>
+            <h2 class="people__title" id="groups-title">Groups you might like</h2>
+            <p class="people__lede">
+              Ranked by shared interests and collective skills. Join any of them, leave whenever, and collaborate directly.
+            </p>
+          </div>
+
+          <p class="people__status" id="groups-status" role="status" aria-live="polite"></p>
+
+          <ul class="groups__list" id="groups-list" role="list">
+            <li class="people__loading">Loading groups&hellip;</li>
+          </ul>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="future-footer">
+    <div>
+      FUTUREERA &copy; 2026. All rights reserved.
+    </div>
+    <div style="display: flex; gap: 24px;">
+      <a href="/">Home</a>
+      <a href="/#about">About</a>
+      <a href="/creators">Creators</a>
+      <a href="/community">Community</a>
+      <a href="/terms">Terms and Conditions</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG IN / SIGN UP MODAL ============ -->
+  <dialog class="auth__dialog" id="auth-dialog" aria-labelledby="auth-title">
+    <button class="auth__close" type="button" data-auth-close aria-label="Close">&times;</button>
+
+    <div class="auth__inner">
+      <span class="auth__eyebrow">MEMBERSHIP</span>
+      <h2 class="auth__title" id="auth-title">Join the <em>Era</em></h2>
+      <div class="auth__rule" aria-hidden="true"></div>
+
+      <div class="auth__tabs" role="tablist" aria-label="Account">
+        <button class="auth__tab is-active" type="button" role="tab" id="auth-tab-login" data-auth-tab="login"
+          aria-selected="true" aria-controls="auth-panel-login">Log in</button>
+        <button class="auth__tab" type="button" role="tab" id="auth-tab-signup" data-auth-tab="signup"
+          aria-selected="false" aria-controls="auth-panel-signup">Sign up</button>
+      </div>
+
+      <p class="auth__msg" id="auth-msg" role="status" aria-live="polite"></p>
+
+      <form class="auth__form is-active" id="auth-panel-login" role="tabpanel" aria-labelledby="auth-tab-login" novalidate>
+        <div class="auth__row">
+          <label class="auth__label" for="auth-login-email">Email</label>
+          <input class="inp" type="email" id="auth-login-email" name="email" autocomplete="email"
+            placeholder="you@example.com" required />
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="auth-login-pass">Password</label>
+          <input class="inp" type="password" id="auth-login-pass" name="password" autocomplete="current-password"
+            placeholder="Your password" required />
+        </div>
+        <button class="btn btn--solid auth__submit" type="submit">Log in</button>
+        <p class="auth__note">No account yet? Switch to <strong>Sign up</strong> above.</p>
+      </form>
+
+      <form class="auth__form" id="auth-panel-signup" role="tabpanel" aria-labelledby="auth-tab-signup" novalidate>
+        <div class="auth__row">
+          <label class="auth__label" for="auth-signup-name">Name</label>
+          <input class="inp" type="text" id="auth-signup-name" name="name" autocomplete="name"
+            placeholder="Your name" required />
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="auth-signup-email">Email</label>
+          <input class="inp" type="email" id="auth-signup-email" name="email" autocomplete="email"
+            placeholder="you@example.com" required />
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="auth-signup-pass">Password</label>
+          <input class="inp" type="password" id="auth-signup-pass" name="password" autocomplete="new-password"
+            placeholder="At least 6 characters" required />
+        </div>
+        <button class="btn btn--solid auth__submit" type="submit">Create account</button>
+        <p class="auth__note">Already have an account? Switch to <strong>Log in</strong> above.</p>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ============ PROFILE MODAL ============ -->
+  <dialog class="prof__dialog" id="profile-dialog" aria-labelledby="profile-title">
+    <button class="prof__close" type="button" data-profile-close aria-label="Close">&times;</button>
+
+    <div class="prof__inner">
+      <!-- Profile Header View -->
+      <header class="prof__head">
+        <div class="prof__avatar-wrap">
+          <span class="prof__avatar" data-profile-initial aria-hidden="true">F</span>
+        </div>
+        <div class="prof__ident">
+          <div class="prof__title-row">
+            <h2 class="prof__title" id="profile-title">Your <em>Profile</em></h2>
+            <button class="prof__edit-btn" type="button" data-profile-edit-toggle title="Edit Profile Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              <span>Edit Profile</span>
+            </button>
+          </div>
+          <p class="prof__email" data-profile-email></p>
+          <p class="prof__headline" data-profile-headline>Builder &bull; Master of AI Era</p>
+          <p class="prof__edu" data-profile-edu></p>
+        </div>
+      </header>
+
+      <!-- Edit Profile Form (Hidden by default, toggled via Edit Profile button) -->
+      <form class="prof__edit-form" id="prof-edit-form" style="display: none;" novalidate>
+        <div class="prof__edit-head">
+          <h3 class="prof__edit-title">Edit Your Profile</h3>
+          <span class="prof__edit-sub">Customize how peers and mentors see you in the Era</span>
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="prof-edit-name">Full Name</label>
+          <input class="inp" type="text" id="prof-edit-name" name="name" required placeholder="e.g. Dev Sharma" />
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="prof-edit-headline">Headline / Role</label>
+          <input class="inp" type="text" id="prof-edit-headline" name="headline" placeholder="e.g. Full-Stack Developer &amp; AI Explorer" />
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="prof-edit-institution">College / School / Institute</label>
+          <input class="inp" type="text" id="prof-edit-institution" name="institution" placeholder="e.g. Delhi Technological University (DTU)" />
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="prof-edit-stage">Academic Stage</label>
+          <select class="inp" id="prof-edit-stage" name="stage">
+            <option value="Final-Year College Student">Final-Year College Student</option>
+            <option value="3rd Year College Student">3rd Year College Student</option>
+            <option value="1st/2nd Year College Student">1st/2nd Year College Student</option>
+            <option value="Class 12th Graduate">Class 12th Graduate</option>
+            <option value="Early Career Builder">Early Career Builder</option>
+          </select>
+        </div>
+        <div class="auth__row">
+          <label class="auth__label" for="prof-edit-bio">Bio / Focus</label>
+          <textarea class="inp" id="prof-edit-bio" name="bio" rows="3" placeholder="What are you currently building or learning?"></textarea>
+        </div>
+        <div class="prof__edit-actions">
+          <button class="btn btn--solid" type="submit" style="padding: 10px 22px; font-size: 13.5px;">Save Changes</button>
+          <button class="btn btn--ghost" type="button" data-profile-edit-cancel style="padding: 10px 18px; font-size: 13.5px;">Cancel</button>
+        </div>
+      </form>
+
+      <!-- Stats Tabs (Clicking any opens/switches the corresponding list!) -->
+      <div class="prof__stats-tabs" role="tablist" aria-label="Profile Views">
+        <button class="prof__stat-tab is-active" type="button" role="tab" id="tab-following" data-prof-tab="following" aria-selected="true" aria-controls="view-following">
+          <span class="prof__statlabel">Following</span>
+          <span class="prof__statvalue" data-profile-following-count>0</span>
+          <span class="prof__stathint">View list &rarr;</span>
+        </button>
+        <button class="prof__stat-tab" type="button" role="tab" id="tab-followers" data-prof-tab="followers" aria-selected="false" aria-controls="view-followers">
+          <span class="prof__statlabel">Followers</span>
+          <span class="prof__statvalue" data-profile-followers-count>0</span>
+          <span class="prof__stathint">View list &rarr;</span>
+        </button>
+        <button class="prof__stat-tab" type="button" role="tab" id="tab-groups" data-prof-tab="groups" aria-selected="false" aria-controls="view-groups">
+          <span class="prof__statlabel">Groups</span>
+          <span class="prof__statvalue" data-profile-group-count>0</span>
+          <span class="prof__stathint">Manage &rarr;</span>
+        </button>
+        <button class="prof__stat-tab" type="button" role="tab" id="tab-tags" data-prof-tab="tags" aria-selected="false" aria-controls="view-tags">
+          <span class="prof__statlabel">My Tags</span>
+          <span class="prof__statvalue" data-profile-tag-count>0</span>
+          <span class="prof__stathint">Skills &rarr;</span>
+        </button>
+      </div>
+
+      <!-- Tab Content Views -->
+      <div class="prof__panels">
+        <!-- View 1: Following List -->
+        <section class="prof__panel is-active" id="view-following" role="tabpanel" aria-labelledby="tab-following">
+          <div class="prof__panel-head">
+            <h3 class="prof__blocktitle">People You Follow</h3>
+            <span class="prof__panel-note">Click any profile to view full student details</span>
+          </div>
+          <ul class="prof__following-list" data-profile-following-list></ul>
+          <p class="prof__empty" data-profile-following-empty>You are not following anyone yet. Discover creators and peers in the Community section below.</p>
+        </section>
+
+        <!-- View 2: Followers List -->
+        <section class="prof__panel" id="view-followers" role="tabpanel" aria-labelledby="tab-followers">
+          <div class="prof__panel-head">
+            <h3 class="prof__blocktitle">Your Followers</h3>
+            <span class="prof__panel-note">Community peers following your journey</span>
+          </div>
+          <ul class="prof__followers-list" data-profile-followers-list></ul>
+          <p class="prof__empty" data-profile-followers-empty>Zero outside tracking. Follows and connections are preserved in your local browser sandbox.</p>
+        </section>
+
+        <!-- View 3: Communities & Groups -->
+        <section class="prof__panel" id="view-groups" role="tabpanel" aria-labelledby="tab-groups">
+          <div class="prof__panel-head">
+            <h3 class="prof__blocktitle">Communities &amp; Groups <span class="prof__hint" data-profile-group-hint></span></h3>
+            <span class="prof__panel-note">Select which circles you participate in</span>
+          </div>
+          <ul class="prof__list" data-profile-groups></ul>
+          <p class="prof__empty" data-profile-groups-empty>You are not in any groups yet. Pick groups below to join.</p>
+          <ul class="prof__choices" data-profile-group-choices></ul>
+        </section>
+
+        <!-- View 4: Tags & Strengths -->
+        <section class="prof__panel" id="view-tags" role="tabpanel" aria-labelledby="tab-tags">
+          <div class="prof__panel-head">
+            <h3 class="prof__blocktitle">Your Selected Strengths &amp; Tags</h3>
+            <span class="prof__panel-note">Used to calculate peer match percentages</span>
+          </div>
+          <ul class="prof__tags" data-profile-tags></ul>
+          <p class="prof__empty" data-profile-tags-empty>Pick interests and skills on the Community page and they will appear here.</p>
+        </section>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- ============ STUDENT / PEER DETAIL MODAL ============ -->
+  <dialog class="person-dialog" id="person-detail-dialog" aria-labelledby="person-detail-name">
+    <button class="person-dialog__close" type="button" data-person-dialog-close aria-label="Close">&times;</button>
+    <div class="person-dialog__inner">
+      <div class="person-dialog__banner"></div>
+      
+      <div class="person-dialog__header">
+        <div class="person-dialog__avatar" id="person-detail-avatar">FE</div>
+        <div class="person-dialog__ident">
+          <div class="person-dialog__namerow">
+            <h2 class="person-dialog__name" id="person-detail-name">Student Name</h2>
+            <span class="person-dialog__handle" id="person-detail-handle">@handle</span>
+          </div>
+          <div class="person-dialog__meta">
+            <span class="person-dialog__role" id="person-detail-role">Role</span>
+            <span class="person-dialog__score" id="person-detail-score">Match</span>
+          </div>
+          <p class="person-dialog__edu" id="person-detail-edu">🎓 Institution &bull; Stage</p>
+        </div>
+      </div>
+
+      <div class="person-dialog__body">
+        <div class="person-dialog__sec">
+          <h4 class="person-dialog__sectitle">Current Focus / Status</h4>
+          <p class="person-dialog__status" id="person-detail-status">Status</p>
+        </div>
+
+        <div class="person-dialog__sec">
+          <h4 class="person-dialog__sectitle">About Journey</h4>
+          <p class="person-dialog__blurb" id="person-detail-blurb">Blurb</p>
+        </div>
+
+        <div class="person-dialog__sec">
+          <h4 class="person-dialog__sectitle">Technical Skills</h4>
+          <div class="person-dialog__chips" id="person-detail-skills"></div>
+        </div>
+
+        <div class="person-dialog__sec">
+          <h4 class="person-dialog__sectitle">Interests &amp; Topics</h4>
+          <div class="person-dialog__chips" id="person-detail-interests"></div>
+        </div>
+
+        <div class="person-dialog__sec">
+          <h4 class="person-dialog__sectitle">Active Groups</h4>
+          <div class="person-dialog__groups" id="person-detail-groups"></div>
+        </div>
+      </div>
+
+      <div class="person-dialog__footer">
+        <div class="person-dialog__foot-stat">
+          <span class="person-dialog__followers-count" id="person-detail-followers">0</span>
+          <span class="person-dialog__followers-label">Followers in FutureEra</span>
+        </div>
+        <div class="person-dialog__foot-actions">
+          <button class="follow-btn person-dialog__follow-btn" type="button" id="person-detail-follow-btn" data-detail-follow="">
+            + Follow
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- GSAP & Controller Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="/static/js/script.js?v=6"></script>
+  <script src="/static/js/era-transition.js?v=1"></script>
+</body>
+</html>

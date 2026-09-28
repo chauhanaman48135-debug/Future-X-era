@@ -1,0 +1,556 @@
+/* =========================================================
+   FutureEra — Quantum Warp & Stage Transition Design System
+   Cinematic Hyperspace Jump & Holographic Arrival
+   ========================================================= */
+
+/* --- Click Shockwave & Button Warp Reactions --- */
+.btn--warping {
+    position: relative;
+    overflow: visible !important;
+    pointer-events: none !important;
+    transform: scale(0.96) !important;
+    box-shadow: 0 0 35px rgba(20, 184, 166, 0.9), 0 0 70px rgba(14, 165, 233, 0.6) !important;
+    border-color: #38bdf8 !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
+}
+
+.btn-warp-shockwave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    border: 2px solid #38bdf8;
+    box-shadow: 0 0 20px #14b8a6, inset 0 0 15px #38bdf8;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+    pointer-events: none;
+    animation: btnShockwaveExpand 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    z-index: 10;
+}
+
+@keyframes btnShockwaveExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+        border-width: 3px;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(7);
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+/* Page body dive during warp initiation */
+body.era-body-warping {
+    overflow: hidden !important;
+}
+
+body.era-body-warping > *:not(#era-warp-overlay) {
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s ease, opacity 0.5s ease;
+    transform: scale(1.04);
+    filter: blur(4px) brightness(1.1);
+    opacity: 0.75;
+}
+
+/* --- Fullscreen Quantum Warp Overlay --- */
+#era-warp-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(15, 23, 42, 0.85) 0%, rgba(3, 7, 18, 0.98) 100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    overflow: hidden;
+}
+
+#era-warp-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+/* Starfield / Hyperspace Canvas */
+#era-warp-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Cyber Perspective Grid (floor + ceiling) */
+.era-warp-grid-floor {
+    position: absolute;
+    bottom: -30%;
+    left: -50%;
+    width: 200%;
+    height: 80%;
+    background-image: 
+        linear-gradient(rgba(20, 184, 166, 0.18) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(20, 184, 166, 0.18) 1.5px, transparent 1.5px);
+    background-size: 60px 60px;
+    transform: perspective(500px) rotateX(72deg);
+    transform-origin: center bottom;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 80%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 80%);
+    animation: gridScroll 1.2s linear infinite;
+    z-index: 2;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+@keyframes gridScroll {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 60px;
+    }
+}
+
+/* Central HUD & Aperture Container */
+.era-warp-hud {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 620px;
+    padding: 20px;
+    user-select: none;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+#era-warp-overlay.is-active .era-warp-hud {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Concentric Aperture Rings */
+.era-portal-portal-wrap {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.era-portal-ring-outer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px dashed rgba(20, 184, 166, 0.7);
+    box-shadow: 0 0 35px rgba(20, 184, 166, 0.3), inset 0 0 25px rgba(20, 184, 166, 0.2);
+    animation: rotateClockwise 8s linear infinite;
+}
+
+.era-portal-ring-outer::before,
+.era-portal-ring-outer::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #38bdf8;
+}
+.era-portal-ring-outer::before {
+    top: -5px;
+    left: calc(50% - 5px);
+}
+.era-portal-ring-outer::after {
+    bottom: -5px;
+    left: calc(50% - 5px);
+}
+
+.era-portal-ring-inner {
+    position: absolute;
+    inset: 24px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(56, 189, 248, 0.6);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    animation: rotateCounterClockwise 5s linear infinite;
+}
+
+.era-portal-ring-pulse {
+    position: absolute;
+    inset: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 30px #14b8a6, inset 0 0 30px #14b8a6;
+    animation: portalCorePulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes rotateClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes portalCorePulse {
+    0% {
+        transform: scale(0.92);
+        opacity: 0.7;
+        box-shadow: 0 0 20px #14b8a6, inset 0 0 15px #14b8a6;
+    }
+    100% {
+        transform: scale(1.08);
+        opacity: 1;
+        box-shadow: 0 0 45px #38bdf8, 0 0 80px rgba(20, 184, 166, 0.8), inset 0 0 35px #38bdf8;
+    }
+}
+
+/* Center Core Icon */
+.era-portal-core {
+    position: relative;
+    z-index: 5;
+    width: 68px;
+    height: 68px;
+    background: radial-gradient(circle, #0f766e 0%, #042f2e 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px #14b8a6;
+    border: 1.5px solid #5eead4;
+}
+
+.era-portal-bolt {
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 0 8px #5eead4);
+    animation: boltEnergy 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes boltEnergy {
+    0% { transform: scale(0.95); filter: drop-shadow(0 0 6px #5eead4); }
+    100% { transform: scale(1.1); filter: drop-shadow(0 0 18px #ffffff); }
+}
+
+/* HUD Typography & Elements */
+.era-hud-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(15, 118, 110, 0.25);
+    border: 1px solid rgba(20, 184, 166, 0.45);
+    border-radius: 9999px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #5eead4;
+    margin-bottom: 14px;
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.2);
+}
+
+.era-hud-tag-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+    animation: tagDotBlink 0.8s ease infinite alternate;
+}
+
+@keyframes tagDotBlink {
+    0% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.era-hud-title {
+    font-family: 'Audiowide', 'Space Grotesk', sans-serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.6), 0 0 40px rgba(20, 184, 166, 0.4);
+    background: linear-gradient(135deg, #ffffff 0%, #ccfbf1 40%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.era-hud-sub {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 13px;
+    color: #94a3b8;
+    letter-spacing: 0.08em;
+    margin-bottom: 22px;
+}
+
+/* Neon Progress Bar */
+.era-hud-progress-wrap {
+    width: 100%;
+    max-width: 320px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.2);
+    margin-bottom: 12px;
+}
+
+.era-hud-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #0d9488 0%, #14b8a6 50%, #38bdf8 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 14px #38bdf8;
+    transition: width 0.06s linear;
+    position: relative;
+}
+
+.era-hud-telemetry {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 11px;
+    color: #64748b;
+    letter-spacing: 0.12em;
+    display: flex;
+    gap: 16px;
+}
+
+.era-hud-telemetry span {
+    color: #5eead4;
+}
+
+/* Final Whiteout / Cyan Portal Flash */
+.era-warp-flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, #ffffff 0%, #ccfbf1 40%, #0d9488 100%);
+    opacity: 0;
+    z-index: 999;
+    pointer-events: none;
+    transition: opacity 0.18s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.era-warp-flash.is-flashing {
+    opacity: 1;
+}
+
+/* --- Arrival Transition Veil on Next Page (/stage) --- */
+.era-arrival-veil {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background: radial-gradient(circle at center, rgba(15, 118, 110, 0.15) 0%, rgba(2, 6, 23, 0.95) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s ease;
+}
+
+.era-arrival-veil.is-dissolved {
+    opacity: 0;
+    transform: scale(1.08);
+    pointer-events: none;
+}
+
+.era-arrival-shockwave {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #38bdf8;
+    box-shadow: 0 0 50px #14b8a6, inset 0 0 30px #38bdf8;
+    animation: arrivalDissipate 0.65s cubic-bezier(0.12, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes arrivalDissipate {
+    0% {
+        transform: scale(0.2);
+        opacity: 1;
+        border-width: 4px;
+    }
+    100% {
+        transform: scale(12);
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+/* --- Stage Selection Entrance Animations --- */
+.stage-animating .app-header {
+    animation: headerSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes headerSlideDown {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.stage-animating .stage-title {
+    animation: titleStageReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    opacity: 0;
+}
+
+@keyframes titleStageReveal {
+    0% {
+        transform: translateY(35px) scale(0.96);
+        opacity: 0;
+        filter: blur(4px);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.stage-animating .stage-card--12th {
+    animation: cardLeftFlyIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    opacity: 0;
+}
+
+@keyframes cardLeftFlyIn {
+    0% {
+        transform: perspective(1200px) translateX(-50px) translateY(40px) rotateY(6deg) scale(0.94);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(15, 118, 110, 0);
+    }
+    100% {
+        transform: perspective(1200px) translateX(0) translateY(0) rotateY(0deg) scale(1);
+        opacity: 1;
+        box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+}
+
+.stage-animating .stage-card--final {
+    animation: cardRightFlyIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
+    opacity: 0;
+}
+
+@keyframes cardRightFlyIn {
+    0% {
+        transform: perspective(1200px) translateX(50px) translateY(40px) rotateY(-6deg) scale(0.94);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(217, 119, 6, 0);
+    }
+    100% {
+        transform: perspective(1200px) translateX(0) translateY(0) rotateY(0deg) scale(1);
+        opacity: 1;
+        box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+}
+
+.stage-animating .stage-card__perks li {
+    animation: perkStaggerIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.stage-animating .stage-card--12th .stage-card__perks li:nth-child(1) { animation-delay: 0.45s; }
+.stage-animating .stage-card--12th .stage-card__perks li:nth-child(2) { animation-delay: 0.52s; }
+.stage-animating .stage-card--12th .stage-card__perks li:nth-child(3) { animation-delay: 0.59s; }
+
+.stage-animating .stage-card--final .stage-card__perks li:nth-child(1) { animation-delay: 0.57s; }
+.stage-animating .stage-card--final .stage-card__perks li:nth-child(2) { animation-delay: 0.64s; }
+.stage-animating .stage-card--final .stage-card__perks li:nth-child(3) { animation-delay: 0.71s; }
+
+@keyframes perkStaggerIn {
+    0% {
+        transform: translateX(-15px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.stage-animating .stage-card__btn {
+    animation: btnAttentionPulse 1.2s ease-in-out 0.8s infinite alternate;
+}
+
+@keyframes btnAttentionPulse {
+    0% {
+        box-shadow: 0 0 0 rgba(15, 118, 110, 0);
+    }
+    100% {
+        box-shadow: 0 6px 20px rgba(15, 118, 110, 0.35);
+    }
+}
+
+/* Card interactive holographic sheen on hover */
+.stage-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stage-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.08) 0%, transparent 60%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translate(0, 0);
+}
+
+.stage-card:hover::after {
+    opacity: 1;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    #era-warp-overlay,
+    .era-arrival-veil,
+    .btn-warp-shockwave,
+    .era-portal-ring-outer,
+    .era-portal-ring-inner,
+    .era-warp-grid-floor {
+        animation: none !important;
+        transition: opacity 0.2s ease !important;
+    }
+    .stage-animating .app-header,
+    .stage-animating .stage-title,
+    .stage-animating .stage-card--12th,
+    .stage-animating .stage-card--final,
+    .stage-animating .stage-card__perks li,
+    .stage-animating .stage-card__btn {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
